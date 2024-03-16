@@ -1,0 +1,46 @@
+import { useAuth } from "../../hooks/useAuth";
+import EventRegLink from "./EventRegLink";
+import HomeLink from "./HomeLink";
+import ImgCollectLink from "./ImgCollectLink";
+import ProfileLink from "./ProfileLink";
+
+const Menu = () => {
+    const { user } = useAuth();
+    const { admin } = useAuth();
+
+    if(user){//rm
+        if(admin){//admin
+            return(
+                <div>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <HomeLink />
+                    <EventRegLink />
+                    <ImgCollectLink />
+                    <ProfileLink />
+                    </ul>
+                </div>
+            );
+        }else{
+            return(
+                <div>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <HomeLink />
+                    <EventRegLink />
+                    <ProfileLink />
+                    </ul>
+                </div>
+            );
+        };
+    }else {//unauthenticated user
+        return(
+            <div>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <HomeLink />
+                    <EventRegLink />
+                    </ul>
+                </div>
+        );
+    };
+};
+
+export default Menu;

@@ -16,13 +16,20 @@ const Signin = () => {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch(error){
-      setError(error.message)
+      //setError(error.message);
+      setError("error on submit");
     }
   };
 
-  const handleLink = async () =>{
+  const handleSignUpLink = async () =>{
     console.log("Linked clicked!");
     navigate('/signup');
+   
+  };
+
+  const handleHomeLink = async () =>{
+    console.log("Linked clicked!");
+    navigate('/');
    
   };
 
@@ -53,7 +60,8 @@ const Signin = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Sign in</button>
         </div>
-        <a className="link link-primary" onClick={handleLink}>Don't an Account? Sign Up</a>
+        <a className="link link-primary" onClick={handleSignUpLink}>Don't an Account? Sign Up</a>
+        <a className="link link-primary" onClick={handleHomeLink}>Don't want an Account? Home page</a>
       </div>
     </div>
   </div>

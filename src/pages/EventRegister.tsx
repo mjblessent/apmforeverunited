@@ -25,7 +25,8 @@ const EventRegister = () => {
         };
         console.log(formData);
     } catch(error){
-      setError(error.message)
+      //setError(error.message);
+      setError("error on submit");
     }
   };
 
@@ -63,7 +64,7 @@ const EventRegister = () => {
                             </div>
                             <label className="form-control w-full max-w-xs" >
                                 <div className="label">
-                                    <span className="label-text">If you have a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
+                                    <span className="label-text">If you are bringing a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
                                 </div>
                                 <select className="select select-bordered" value={plusOne} onChange={(e) => setPlusOne(e.target.value)}>
                                     <option value={"noplusone"}>No Plus one</option>
@@ -78,11 +79,86 @@ const EventRegister = () => {
                                 <input type="text" value={plusOneName} onChange={(e) => setPlusOneName(e.target.value)} placeholder="Plus One Name" className="input input-bordered"/>
                             </div>
                             <div className="form-control">
+                                <ul>
+                                <span className="label-text">Do you plan on staying at the night? Select nights you plan to stay</span>
+                                    <li>
+                                        <label className="label cursor-pointer">
+                                            <span className="label-text">Thursday July 26th, 2024</span> 
+                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label className="label cursor-pointer">
+                                            <span className="label-text">Friday July 27th, 2024</span> 
+                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label className="label cursor-pointer">
+                                            <span className="label-text">Saturday July 28th, 2024</span> 
+                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="table table-zebra">
+                                    {/* head */}
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Breakfast</th>
+                                            <th>Lunch</th>
+                                            <th>Dinner</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* row 1 */}
+                                        <tr>
+                                            <th>Thursday July 26th, 2024</th>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" disabled /></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" disabled/></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                        </tr>
+                                        {/* row 2 */}
+                                        <tr>
+                                            <th>Friday July 27th, 2024</th>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                        </tr>
+                                        {/* row 3 */}
+                                        <tr>
+                                            <th>Saturday July 28th, 2024</th>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                        </tr>
+                                        {/* row 4 */}
+                                        <tr>
+                                            <th>Sunday July 29th, 2024</th>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" disabled/></td>
+                                            <td><input type="checkbox" className="checkbox checkbox-primary" disabled/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Any dietary restrictions?</span>
                                 </label>
                                 <input type="text" value={dietary} onChange={(e) => setDietary(e.target.value)} placeholder="Dietary restrictions" className="input input-bordered"/>
                             </div>
+                            <label className="form-control w-full max-w-xs" >
+                                <div className="label">
+                                    <span className="label-text">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
+                                </div>
+                                <select className="select select-bordered" value={plusOne} onChange={(e) => setPlusOne(e.target.value)}>
+                                    <option value={"noplusone"}>No medical training / not wanting to assist</option>
+                                    <option value={"spouse"}>Medically trained / willing to assist</option>
+                                </select>
+                            </label>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>
                             </div>

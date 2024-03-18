@@ -1,3 +1,4 @@
+import Description from "../components/EventReg/Description";
 import Navbar from "../components/Navigation/Navbar";
 import React, { useState } from "react";
 //import { useNavigate } from "react-router-dom";
@@ -38,10 +39,7 @@ const EventRegister = () => {
             {error && error}
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col ">
-                    <div className="text-center ">
-                        <h1 className="text-5xl font-bold">Mission reunion!</h1>
-                        <p className="py-6">Details for the reunion</p>
-                    </div>
+                    <Description />
                     <div className="card sm:w-[30rem] shadow-2xl bg-base-100">
                         <div className="card-body">
                             <div className="form-control">

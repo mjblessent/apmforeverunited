@@ -11,7 +11,12 @@ const EventRegister = () => {
   const [lName, setLName] = useState<string>('');
   const [plusOne, setPlusOne] = useState<string>('noplusone');
   const [plusOneName, setPlusOneName] = useState<string>('');
+  const [dOneNight, setdOneNight] = useState(false);
+  const [dTwoNight, setdTwoNight] = useState(false);
+  const [dThreeNight, setdThreeNight] = useState(false);
+  const [dOneD, setdOneD] = useState(false);
   const [dietary, setDietary] = useState<string>('');
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,6 +28,11 @@ const EventRegister = () => {
             email: email,
             plusOne: plusOne,
             plusOneName: plusOneName,
+            dOneNight: dOneNight,
+            dTwoNight: dTwoNight,
+            dThreeNight: dThreeNight,
+            dOneD: dOneD,
+            dietary: dietary,
         };
         console.log(formData);
     } catch(error){
@@ -82,19 +92,19 @@ const EventRegister = () => {
                                     <li>
                                         <label className="label cursor-pointer">
                                             <span className="label-text">Thursday July 26th, 2024</span> 
-                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                            <input type="checkbox" checked={dOneNight} onChange={() => setdOneNight(!dOneNight)} className="checkbox checkbox-primary" />
                                         </label>
                                     </li>
                                     <li>
                                         <label className="label cursor-pointer">
                                             <span className="label-text">Friday July 27th, 2024</span> 
-                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                            <input type="checkbox" checked={dTwoNight} onChange={() => setdTwoNight(!dTwoNight)} className="checkbox checkbox-primary" />
                                         </label>
                                     </li>
                                     <li>
                                         <label className="label cursor-pointer">
                                             <span className="label-text">Saturday July 28th, 2024</span> 
-                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                            <input type="checkbox" checked={dThreeNight} onChange={() => setdThreeNight(!dThreeNight)} className="checkbox checkbox-primary" />
                                         </label>
                                     </li>
                                 </ul>
@@ -116,7 +126,7 @@ const EventRegister = () => {
                                             <th>Thursday July 26th, 2024</th>
                                             <td><input type="checkbox" className="checkbox checkbox-primary" disabled /></td>
                                             <td><input type="checkbox" className="checkbox checkbox-primary" disabled/></td>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dOneD} onChange={() => setdOneD(!dOneD)} className="checkbox checkbox-primary" /></td>
                                         </tr>
                                         {/* row 2 */}
                                         <tr>

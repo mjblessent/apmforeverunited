@@ -15,6 +15,12 @@ const EventRegister = () => {
   const [dTwoNight, setdTwoNight] = useState(false);
   const [dThreeNight, setdThreeNight] = useState(false);
   const [dOneD, setdOneD] = useState(false);
+  const [dTwoB, setdTwoB] = useState(false);
+  const [dTwoL, setdTwoL] = useState(false);
+  const [dTwoD, setdTwoD] = useState(false);
+  const [dThreeB, setdThreeB] = useState(false);
+  const [dThreeL, setdThreeL] = useState(false);
+  const [dThreeD, setdThreeD] = useState(false);
   const [dietary, setDietary] = useState<string>('');
 
 
@@ -32,6 +38,9 @@ const EventRegister = () => {
             dTwoNight: dTwoNight,
             dThreeNight: dThreeNight,
             dOneD: dOneD,
+            dTwoB: dTwoB,
+            dTwoL: dTwoL,
+            dTwoD: dTwoD,
             dietary: dietary,
         };
         console.log(formData);
@@ -131,16 +140,16 @@ const EventRegister = () => {
                                         {/* row 2 */}
                                         <tr>
                                             <th>Friday July 27th, 2024</th>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dTwoB} onChange={() => setdTwoB(!dTwoB)} className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dTwoL} onChange={() => setdTwoL(!dTwoL)} className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dTwoD} onChange={() => setdTwoD(!dTwoD)} className="checkbox checkbox-primary" /></td>
                                         </tr>
                                         {/* row 3 */}
                                         <tr>
                                             <th>Saturday July 28th, 2024</th>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
-                                            <td><input type="checkbox" className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dThreeB} onChange={() => setdThreeB(!dThreeB)} className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dThreeL} onChange={() => setdThreeL(!dThreeL)} className="checkbox checkbox-primary" /></td>
+                                            <td><input type="checkbox" checked={dThreeD} onChange={() => setdThreeD(!dThreeD)} className="checkbox checkbox-primary" /></td>
                                         </tr>
                                         {/* row 4 */}
                                         <tr>

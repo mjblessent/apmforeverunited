@@ -9,6 +9,7 @@ import ImageCollection from "./pages/ImageCollection"
 import AdminRoute from "./routes/AdminRoutes"
 import Profile from "./pages/Profile"
 import EventRegister from "./pages/EventRegister"
+import EventResults from "./pages/EventResults"
 
 
 
@@ -20,6 +21,11 @@ function App() {
         <Route path="/imagecollection" element={
         <AdminRoute>
           <ImageCollection />
+        </AdminRoute>
+        } />
+        <Route path="/eventresults" element={
+        <AdminRoute>
+          <EventResults />
         </AdminRoute>
         } />
         <Route path="/signup" element={

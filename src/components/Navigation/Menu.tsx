@@ -1,5 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
 import EventRegLink from "./EventRegLink";
+import EventResultLink from "./EventResultLink";
 import HomeLink from "./HomeLink";
 import ImgCollectLink from "./ImgCollectLink";
 import ProfileLink from "./ProfileLink";
@@ -15,6 +16,7 @@ const Menu = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <HomeLink />
                     <EventRegLink />
+                    <EventResultLink />
                     <ImgCollectLink />
                     <ProfileLink />
                     </ul>

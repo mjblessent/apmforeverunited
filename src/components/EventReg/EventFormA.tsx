@@ -28,6 +28,9 @@ const EventFormUA = () => {
   const [dFourB, setdFourB] = useState(false);
   const [dietary, setDietary] = useState<string>('');
   const [medical, setMedical] = useState<string>('nottrained');
+  const [food, setFood] = useState<string>('no');
+  const [clean, setClean] = useState<string>('no');
+  const [shop, setShop] = useState<string>('no');
 
   const getUserData = async () => {
     try{
@@ -69,6 +72,9 @@ const EventFormUA = () => {
             dFourB: dFourB,
             dietary: dietary,
             medical: medical,
+            food: food,
+            clean: clean,
+            shop: shop,
             createdAt: serverTimestamp()
         };
 
@@ -186,6 +192,57 @@ const EventFormUA = () => {
                                 <option value={"trained"}>Medically trained / willing to assist</option>
                             </select>
                         </label>
+                        <div>
+                            <div className="label">
+                                <span className="label-text">Would you be willing to help with the Food Preparations? Which could include setting out food and simple cooking tasks </span>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">Yes, wiling and able to help</span> 
+                                    <input type="radio"  value="yes" onChange={(e) => setFood(e.target.value)} name="radio-1" className="radio radio-primary"/>
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">No, not wiling or able to help</span> 
+                                    <input type="radio"  value="no" onChange={(e) => setFood(e.target.value)} name="radio-1" className="radio radio-primary"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="label">
+                                <span className="label-text">Would you be willing to help with clean up? Which could includes cleaning up after meals and around the cabin after the event </span>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">Yes, wiling and able to help</span> 
+                                    <input type="radio"  value="yes" onChange={(e) => setClean(e.target.value)} name="radio-2" className="radio radio-primary"/>
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">No, not wiling or able to help</span> 
+                                    <input type="radio"  value="no" onChange={(e) => setClean(e.target.value)} name="radio-2" className="radio radio-primary"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="label">
+                                <span className="label-text">Would you be willing to help shop before the event? Which could involve setting up a time days before the event to go grocery shopping with Sister Collins</span>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">Yes, wiling and able to help</span> 
+                                    <input type="radio"  value="yes" onChange={(e) => setShop(e.target.value)} name="radio-3" className="radio radio-primary"/>
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <span className="label-text">No, not wiling or able to help</span> 
+                                    <input type="radio"  value="no" onChange={(e) => setShop(e.target.value)} name="radio-3" className="radio radio-primary"/>
+                                </label>
+                            </div>
+                        </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>

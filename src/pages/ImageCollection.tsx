@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import ImageGallery from "../components/ImageGallery";
 import Navbar from "../components/Navigation/Navbar";
 import UploadForm from "../components/UploadForm";
@@ -10,6 +11,7 @@ const ImageCollection = () => {
         <Navbar />
         <UploadForm />
         <ImageGallery />
+        <Footer/>
     </div>
     );
 };

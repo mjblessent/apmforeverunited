@@ -27,7 +27,7 @@ const EventFormUA = () => {
   const [dThreeD, setdThreeD] = useState(false);
   const [dFourB, setdFourB] = useState(false);
   const [dietary, setDietary] = useState<string>('');
-  const [medical, setMedical] = useState<string>('nottrained');
+  const [medical, setMedical] = useState<string>('no');
   const [food, setFood] = useState<string>('no');
   const [clean, setClean] = useState<string>('no');
   const [shop, setShop] = useState<string>('no');
@@ -191,8 +191,8 @@ const EventFormUA = () => {
                                 <span className="label-text">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
                             </div>
                             <select className="select select-bordered" value={medical} onChange={(e) => setMedical(e.target.value)}>
-                                <option value={"nottrained"}>No medical training / not wanting to assist</option>
-                                <option value={"trained"}>Medically trained / willing to assist</option>
+                                <option value={"no"}>No medical training / not wanting to assist</option>
+                                <option value={"yes"}>Medically trained / willing to assist</option>
                             </select>
                         </label>
                         <div>

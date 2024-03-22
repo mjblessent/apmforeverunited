@@ -3,6 +3,10 @@ import Nights from "../components/EventResults/Nights";
 import Overview from "../components/EventResults/Overview";
 import Meals from "../components/EventResults/Meals";
 import Footer from "../components/Footer";
+import Dietary from "../components/EventResults/Dietary";
+import Helpers from "../components/EventResults/Helpers";
+import Attendees from "../components/EventResults/Attendees";
+import MarriedCouples from "../components/EventResults/MarriedCouples";
 
 
 const EventResults = () => {
@@ -18,7 +22,7 @@ const EventResults = () => {
                 <div>
                     <h1 className="text-3xl font-bold">Meals</h1>
                 </div>
-                <table className="table table-zebra">
+                <table className="table table-zebra border-4">
                     {/* head */}
                     <thead>
                         <tr>
@@ -60,6 +64,13 @@ const EventResults = () => {
                     </tbody>
                 </table>
             </div>
+            <Dietary/>
+            <Helpers item="shop" title="Shopping"/>
+            <Helpers item="food" title="Food Prep"/>
+            <Helpers item="clean" title="Clean Up"/>
+            <Helpers item="medical" title="Medical Training"/>
+            <Attendees/>
+            <MarriedCouples/>
         </div>
         <Footer/>
     </div>

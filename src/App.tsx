@@ -11,6 +11,7 @@ import Profile from "./pages/Profile"
 import EventRegister from "./pages/EventRegister"
 import EventResults from "./pages/EventResults"
 import UploadMissionInfo from "./pages/UploadMissionInfo"
+import SearchMissionInfo from "./pages/SearchMissionInfo"
 
 
 
@@ -27,6 +28,11 @@ function App() {
         <Route path="/uploadmissioninfo" element={
         <AdminRoute>
           <UploadMissionInfo />
+        </AdminRoute>
+        } />
+        <Route path="/searchmissioninfo" element={
+        <AdminRoute>
+          <SearchMissionInfo />
         </AdminRoute>
         } />
         <Route path="/eventresults" element={

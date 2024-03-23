@@ -10,6 +10,7 @@ import AdminRoute from "./routes/AdminRoutes"
 import Profile from "./pages/Profile"
 import EventRegister from "./pages/EventRegister"
 import EventResults from "./pages/EventResults"
+import UploadMissionInfo from "./pages/UploadMissionInfo"
 
 
 
@@ -21,6 +22,11 @@ function App() {
         <Route path="/imagecollection" element={
         <AdminRoute>
           <ImageCollection />
+        </AdminRoute>
+        } />
+        <Route path="/uploadmissioninfo" element={
+        <AdminRoute>
+          <UploadMissionInfo />
         </AdminRoute>
         } />
         <Route path="/eventresults" element={

@@ -12,6 +12,8 @@ import EventRegister from "./pages/EventRegister"
 import EventResults from "./pages/EventResults"
 import UploadMissionInfo from "./pages/UploadMissionInfo"
 import SearchMissionInfo from "./pages/SearchMissionInfo"
+import ManageAccounts from "./pages/ManageAccounts"
+import ManageHome from "./pages/ManageHome"
 
 
 
@@ -23,6 +25,16 @@ function App() {
         <Route path="/imagecollection" element={
         <AdminRoute>
           <ImageCollection />
+        </AdminRoute>
+        } />
+        <Route path="/manageaccounts" element={
+        <AdminRoute>
+          <ManageAccounts />
+        </AdminRoute>
+        } />
+        <Route path="/managehome" element={
+        <AdminRoute>
+          <ManageHome />
         </AdminRoute>
         } />
         <Route path="/uploadmissioninfo" element={

@@ -1,14 +1,16 @@
-
 import Footer from "../components/Footer";
+import GetAnnouncements from "../components/GetAnnouncements";
 import Navbar from "../components/Navigation/Navbar";
 
 
-const Home = () => {
 
+
+const Home = () => {
+    
 
     return( <div className="max-w-4xl mx-auto ">
         <Navbar />
-        <h1>Home Page!</h1>
+        <GetAnnouncements />
         <Footer/>
     </div>
     );

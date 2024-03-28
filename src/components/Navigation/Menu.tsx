@@ -3,6 +3,8 @@ import EventRegLink from "./EventRegLink";
 import EventResultLink from "./EventResultLink";
 import HomeLink from "./HomeLink";
 import ImgCollectLink from "./ImgCollectLink";
+import ManageAccLink from "./ManageAccLink";
+import ManageHomeLink from "./ManageHomeLink";
 import ProfileLink from "./ProfileLink";
 
 const Menu = () => {
@@ -18,6 +20,8 @@ const Menu = () => {
                     <EventRegLink />
                     <EventResultLink />
                     <ImgCollectLink />
+                    <ManageAccLink />
+                    <ManageHomeLink />
                     <ProfileLink />
                     </ul>
                 </div>

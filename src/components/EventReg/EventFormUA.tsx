@@ -37,8 +37,8 @@ const EventFormUA = () => {
     try{
         const fileId = uuidv4();
         const formData = {
-            fName: fName,
-            lName: lName,
+            fName: fName.toLowerCase(),
+            lName: lName.toLowerCase(),
             email: email,
             plusOne: plusOne,
             plusOneName: plusOneName,

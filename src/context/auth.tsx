@@ -26,7 +26,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     const [admin, setAdmin] = useState<boolean>(true);
 
     useEffect(()  => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
             setIsLoading(false);
             setAdmin(admin);
@@ -53,10 +53,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
                         }
                     }catch(error){
                         console.error(error);
+                        setAdmin(false);
                     }
                 }
 
-                getAdmin();
+                await getAdmin();
             }
             else{
                 setAdmin(false);

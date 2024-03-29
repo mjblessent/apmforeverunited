@@ -114,7 +114,7 @@ const EventFormUA = () => {
                         </div>
                         <div className="form-control">
                             <ul>
-                            <span className="label-text">Do you plan on staying at the night? Select nights you plan to stay</span>
+                            <span className="label-text">Do you plan on staying the night? Select nights you plan to stay</span>
                                 <li>
                                     <label className="label cursor-pointer">
                                         <span className="label-text">Thursday July 26th, 2024</span> 

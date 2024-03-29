@@ -34,7 +34,7 @@ const UploadAnnouncement = () => {
         const storageRef = ref(storage, storageDirect);
         await uploadBytesResumable(storageRef, selectedFile);
          downloadURL = await getDownloadURL(storageRef);
-        console.log(downloadURL);
+        //console.log(downloadURL);
         
         
         }

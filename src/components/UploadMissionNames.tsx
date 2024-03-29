@@ -150,7 +150,7 @@ const UploadMissionNames = () => {
         //console.log("Name counts");
         //console.log(qSnapshotLast.data().count);
         //console.log(qSnapshotLast.data().count < 1);
-        console.log(qSnapshot.data().count < 1);
+        //console.log(qSnapshot.data().count < 1);
         //console.log(qSnapshotMiddle.data().count);
 
         if(qSnapshot.data().count < 1){

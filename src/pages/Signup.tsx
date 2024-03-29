@@ -49,13 +49,13 @@ const Signup = () => {
   };
 
   const handleLink = async () =>{
-    console.log("Linked clicked!");
+    //console.log("Linked clicked!");
     navigate('/signin');
    
   };
 
   const handleHomeLink = async () =>{
-    console.log("Linked clicked!");
+    //console.log("Linked clicked!");
     navigate('/');
    
   };

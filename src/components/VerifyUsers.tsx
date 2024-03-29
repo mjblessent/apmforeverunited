@@ -46,8 +46,8 @@ const VerifyUsers = () => {
             if (docSnap.exists()) {
                 const q = query(collection(db,"missionaryname"), and(where("first", "==", docSnap.data().fName), where("last", "==", docSnap.data().lName)));
                 const qSnapshot = await getCountFromServer(q);
-                console.log(qSnapshot.data().count);
-                console.log(qSnapshot.data().count > 0);//greater than 0 means it was found
+                //console.log(qSnapshot.data().count);
+                //console.log(qSnapshot.data().count > 0);//greater than 0 means it was found
                 if(qSnapshot.data().count > 0)
                 {
                     setServed("They Served!");
@@ -61,7 +61,7 @@ const VerifyUsers = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log(userID);
+        //console.log(userID);
         await updateDoc(doc(db, 'user/' + userID), {verified: true});
         await setDoc(doc(db, 'account/' + userID), {id: userID});
 

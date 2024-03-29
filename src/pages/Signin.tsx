@@ -22,13 +22,13 @@ const Signin = () => {
   };
 
   const handleSignUpLink = async () =>{
-    console.log("Linked clicked!");
+    //console.log("Linked clicked!");
     navigate('/signup');
    
   };
 
   const handleHomeLink = async () =>{
-    console.log("Linked clicked!");
+    //console.log("Linked clicked!");
     navigate('/');
    
   };
@@ -60,7 +60,7 @@ const Signin = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Sign in</button>
         </div>
-        <a className="link link-primary" onClick={handleSignUpLink}>Don't an Account? Sign Up</a>
+        <a className="link link-primary" onClick={handleSignUpLink}>Don't have an Account? Sign Up</a>
         <a className="link link-primary" onClick={handleHomeLink}>Don't want an Account? Home page</a>
       </div>
     </div>

@@ -37,22 +37,22 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
                         const userRecord = doc(db, DBuserDirectory);
                         const docSnap = await getDoc(userRecord);
                         if (docSnap.exists()) {
-                            console.log(docSnap.data().admin + ":Docsnap");
-                            console.log(docSnap.data().admin == true + ":Docsnap condition");
+                            //console.log(docSnap.data().admin + ":Docsnap");
+                            //console.log(docSnap.data().admin == true + ":Docsnap condition");
                             if(docSnap.data().admin == true){
                                 setAdmin(true);
-                                console.log("admin!");
+                                //console.log("admin!");
                             }
                             else{
                                 setAdmin(false);
-                                console.log("Not Admin");
+                               // console.log("Not Admin");
                             }
                         }
                         else{
                             setAdmin(false);
                         }
                     }catch(error){
-                        console.error(error);
+                        //console.error(error);
                         setAdmin(false);
                     }
                 }

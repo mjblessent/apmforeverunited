@@ -8,7 +8,7 @@ import Navbar from "../components/Navigation/Navbar";
 const Home = () => {
     
 
-    return( <div className="max-w-4xl mx-auto ">
+    return( <div className="md:container md:mx-auto ">
         <Navbar />
         <GetAnnouncements />
         <Footer/>

@@ -42,7 +42,7 @@ const GetAnnouncements = () => {
         <div key={list.id}>
         <div className="hero min-h-12 bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-                <img src={list.imgurl} className="max-w-sm w-fit rounded-lg shadow-2xl" />
+                <img src={list.imgurl} className="max-w-xs w-fit max-h-fit rounded-lg shadow-2xl" />
                 <div>
                     <h1 className="text-5xl font-bold">{list.title}</h1>
                     <p className="text-xs">{list.date}</p>

@@ -91,7 +91,7 @@ const EventFormUA = () => {
   };
 
     return( 
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="w-fit max-h-fit mx-auto ">
         {error && error}
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">

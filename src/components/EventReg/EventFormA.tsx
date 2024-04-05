@@ -96,7 +96,7 @@ const EventFormUA = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
                 <Description />
-                <div className="card sm:w-[30rem] shadow-2xl bg-base-100">
+                <div className="card sm:max-w-lg shadow-2xl bg-base-100">
                     <div className="card-body">
                         <label className="form-control w-full max-w-xs" >
                             <div className="label">

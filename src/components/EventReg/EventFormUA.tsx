@@ -71,12 +71,12 @@ const EventFormUA = () => {
   };
 
     return( 
-    <form onSubmit={handleSubmit} className="w-fit max-h-fit">
+    <form onSubmit={handleSubmit} className="w-fit max-h-fit mx-auto">
         {error && error}
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col">
+            <div className="hero-content flex-col ">
                 <Description />
-                <div className="card sm:max-w-md shadow-2xl bg-base-100">
+                <div className="card sm:w-[30rem] shadow-2xl bg-base-100">
                     <div className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -96,7 +96,7 @@ const EventFormUA = () => {
                             </label>
                             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" className="input input-bordered" required />
                         </div>
-                        <label className="form-control w-fit max-w-xs" >
+                        <label className="form-control w-full max-w-xs" >
                             <div className="label">
                                 <span className="label-text">If you are bringing a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
                             </div>
@@ -184,7 +184,7 @@ const EventFormUA = () => {
                             </label>
                             <input type="text" value={dietary} onChange={(e) => setDietary(e.target.value)} placeholder="Dietary restrictions" className="input input-bordered"/>
                         </div>
-                        <label className="form-control w-fit max-w-xs" >
+                        <label className="form-control w-full max-w-xs" >
                             <div className="label">
                                 <span className="label-text">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
                             </div>

@@ -11,7 +11,7 @@ const EventRegister = () => {
     
     if(user){
         return( 
-            <div className="sm:container mx-auto  ">
+            <div className="container mx-auto  ">
                 <Navbar />
                 <EventFormA />
                 <Footer/>
@@ -19,7 +19,7 @@ const EventRegister = () => {
             );
     } else{
         return( 
-        <div className="sm:container mx-auto ">
+        <div className="container mx-auto ">
             <Navbar />
             <EventFormUA />
             <Footer/>

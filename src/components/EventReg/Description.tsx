@@ -44,8 +44,8 @@ const Description = () => {
     getCurrentEventId();
 
     return(
-        <div className="text-center text-balance ">
-            <h1 className="text-xl font-bold">{title}</h1>
+        <div className="text-center ">
+            <h1 className="text-5xl font-bold">{title}</h1>
             <h2>{date}</h2>
             <p className="py-6">{descript}</p>
         </div>

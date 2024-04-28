@@ -11,6 +11,7 @@ type MarriedDoc ={
 const MarriedCouples = () => {
     const [firstLoad, setFirstLoad] = useState(true);
     const [marriedList, setMarriedList] = useState<MarriedDoc>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getMarried = async () => {
 
@@ -27,6 +28,7 @@ const MarriedCouples = () => {
 
         setMarriedList(lists);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
@@ -34,6 +36,14 @@ const MarriedCouples = () => {
         
     }
 
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+                <h1 className="text-3xl font-bold text-center">Married Couples</h1>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
+    }
 
     return(
         <div>

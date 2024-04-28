@@ -8,6 +8,7 @@ const Overview = () => {
     const [NumSpouse, setNumSpouse] = useState<number>(0);
     const [NumSigOth, setNumSigOth] = useState<number>(0);
     const [NumSingle, setNumSingle] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getSetNums = async () => {
         const qSpouse = query(collection(db,"submissions"), where("plusOne", "==", "spouse"));
@@ -22,11 +23,21 @@ const Overview = () => {
         setNumSigOth(querySnapshotSigOth.data().count * 2);
         setNumSingle(querySnapshotSingle.data().count);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
         getSetNums();
         
+    }
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+                <h1 className="text-3xl font-bold">Overview of Attendence</h1>
+                <progress className="progress w-56"></progress> 
+            </div>
+        )
     }
 
     return(

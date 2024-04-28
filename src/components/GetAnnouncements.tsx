@@ -13,6 +13,7 @@ type AnnouncementDoc ={
 const GetAnnouncements = () => {
     const [firstLoad, setFirstLoad] = useState(true);
     const [announcementList, setAnnouncementList] = useState<AnnouncementDoc>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getAnnouncements = async () => {
         const q = query(collection(db,"announcements"), where("status", "==", "show"));
@@ -30,10 +31,19 @@ const GetAnnouncements = () => {
 
         setAnnouncementList(lists);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
         getAnnouncements();
+    }
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
     }
 
     return(

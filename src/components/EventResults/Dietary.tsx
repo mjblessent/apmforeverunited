@@ -10,6 +10,7 @@ type DietaryDoc = {
 const Dietary = () => {
     const [firstLoad, setFirstLoad] = useState(true);
     const [dietaryList, setDietaryList] = useState<DietaryDoc>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getDietary = async () => {
 
@@ -25,11 +26,21 @@ const Dietary = () => {
 
         setDietaryList(lists);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
         getDietary();
         
+    }
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+                <h1 className="text-3xl font-bold text-center">Dietary Restrictions</h1>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
     }
 
     return(

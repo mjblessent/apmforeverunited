@@ -15,6 +15,7 @@ type HelperDoc = {
 const Helpers = (props: Props) => {
     const [firstLoad, setFirstLoad] = useState(true);
     const [helperList, setHelperList] = useState<HelperDoc>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getHelpers = async () => {
 
@@ -29,11 +30,21 @@ const Helpers = (props: Props) => {
 
         setHelperList(lists);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
         getHelpers();
         
+    }
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+                <h1 className="text-3xl font-bold text-center">{props.title}</h1>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
     }
 
 

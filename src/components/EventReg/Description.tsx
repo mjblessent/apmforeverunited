@@ -7,6 +7,7 @@ const Description = () => {
     const [title, setTitle] = useState<string>('');
     const [date, setDate] = useState<string>('');
     const [descript, setDescript] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getCurrentEventId = async () => {
         const DBCurrentEventId = 'events/currentevent';
@@ -39,9 +40,17 @@ const Description = () => {
             setDate("");
             setDescript("Check back later for future events");
         }
-        
+        setIsLoading(false);
     };
     getCurrentEventId();
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
+    }
 
     return(
         <div className="text-center ">

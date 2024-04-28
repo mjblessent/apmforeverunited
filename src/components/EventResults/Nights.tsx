@@ -13,6 +13,7 @@ const Nights = (props: Props) => {
     const [NightsNumSigOth, setNightsNumSigOth] = useState<number>(0);
     const [NightsNumSingle, setNightsNumSingle] = useState<number>(0);
     const [firstLoad, setFirstLoad] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getsetNightsNum = async () => {
         const qSpouse = query(collection(db,"submissions"), where(props.night, "==", true),where("plusOne", "==", "spouse"));
@@ -27,12 +28,23 @@ const Nights = (props: Props) => {
         setNightsNumSigOth(querySnapshotSigOth.data().count * 2);
         setNightsNumSingle(querySnapshotSingle.data().count);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
         getsetNightsNum();
         
     }
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+                <h1 className="text-3xl font-bold">{props.message}</h1>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
+    }
+
     return(
     <div className="text-center space-y-1">
         <div>

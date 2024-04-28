@@ -12,6 +12,7 @@ const Meals = (props: Props) => {
     const [MealsNumSigOth, setMealsNumSigOth] = useState<number>(0);
     const [MealsNumSingle, setMealsNumSingle] = useState<number>(0);
     const [firstLoad, setFirstLoad] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getsetMealsNum = async () => {
         const qSpouse = query(collection(db,"submissions"), where(props.meal, "==", true),where("plusOne", "==", "spouse"));
@@ -26,12 +27,22 @@ const Meals = (props: Props) => {
         setMealsNumSigOth(querySnapshotSigOth.data().count * 2);
         setMealsNumSingle(querySnapshotSingle.data().count);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
         getsetMealsNum();
         
     }
+
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
+    }
+
     return(
     <div>
         {(MealsNumSpouse*2)+MealsNumSigOth+MealsNumSingle}

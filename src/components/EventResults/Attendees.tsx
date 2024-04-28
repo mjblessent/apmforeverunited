@@ -11,6 +11,7 @@ type AttendeeDoc ={
 const Attendees = () => {
     const [firstLoad, setFirstLoad] = useState(true);
     const [attendeesList, setAttendeesList] = useState<AttendeeDoc>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getAttendees = async () => {
 
@@ -27,6 +28,7 @@ const Attendees = () => {
 
         setAttendeesList(lists);
         setFirstLoad(false);
+        setIsLoading(false);
     };
 
     if(firstLoad){
@@ -34,6 +36,14 @@ const Attendees = () => {
         
     }
 
+    if(isLoading){
+        return (
+            <div className='text-center mt-10'>
+                <h1 className="text-3xl font-bold text-center">Attendees</h1>
+               <progress className="progress w-56"></progress> 
+            </div>
+        )
+    }
 
     return(
         <div>

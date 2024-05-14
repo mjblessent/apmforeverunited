@@ -31,6 +31,7 @@ const EventFormUA = () => {
   const [food, setFood] = useState<string>('no');
   const [clean, setClean] = useState<string>('no');
   const [shop, setShop] = useState<string>('no');
+  const [isError, setIsError] = useState(false);
 
   const getUserData = async () => {
     try{
@@ -46,6 +47,7 @@ const EventFormUA = () => {
     }
     }catch(error){
         console.error(error);
+        setIsError(true);
     }
   };
 
@@ -87,9 +89,19 @@ const EventFormUA = () => {
     } catch(error){
       //setError(error.message);
       setError("error on submit");
+      setIsError(true);
     }
   };
 
+
+  if(isError){
+    return(
+    <div role="alert" className="alert alert-error">
+        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>Account Not Verified! Please try again later</span>
+    </div>
+    );
+    }else{
     return( 
     <form onSubmit={handleSubmit} className="w-fit max-h-fit mx-auto ">
         {error && error}
@@ -100,7 +112,7 @@ const EventFormUA = () => {
                     <div className="card-body">
                         <label className="form-control w-full max-w-xs" >
                             <div className="label">
-                                <span className="label-text">If you are bringing a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
+                                <span className="label-text font-bold">If you are bringing a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
                             </div>
                             <select className="select select-bordered" value={plusOne} onChange={(e) => setPlusOne(e.target.value)}>
                                 <option value={"noplusone"}>No Plus one</option>
@@ -110,13 +122,13 @@ const EventFormUA = () => {
                         </label>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Plus One Name</span>
+                                <span className="label-text font-bold">Plus One Name</span>
                             </label>
                             <input type="text" value={plusOneName} onChange={(e) => setPlusOneName(e.target.value)} placeholder="Plus One Name" className="input input-bordered"/>
                         </div>
                         <div className="form-control">
                             <ul>
-                            <span className="label-text">Do you plan on staying the night? Select nights you plan to stay</span>
+                            <span className="label-text font-bold">Do you plan on staying the night? Select nights you plan to stay</span>
                                 <li>
                                     <label className="label cursor-pointer">
                                         <span className="label-text">Thursday July 26th, 2024</span> 
@@ -126,6 +138,7 @@ const EventFormUA = () => {
                             </ul>
                         </div>
                         <div className="overflow-x-auto">
+                        <span className="label-text font-bold">Meals will be provided, please select what meals you plan on attending</span>
                             <table className="table table-zebra">
                                 {/* head */}
                                 <thead>
@@ -156,13 +169,13 @@ const EventFormUA = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Any dietary restrictions?</span>
+                                <span className="label-text font-bold">Any dietary restrictions?</span>
                             </label>
                             <input type="text" value={dietary} onChange={(e) => setDietary(e.target.value)} placeholder="Dietary restrictions" className="input input-bordered"/>
                         </div>
                         <label className="form-control w-full max-w-xs" >
                             <div className="label">
-                                <span className="label-text">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
+                                <span className="label-text font-bold">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
                             </div>
                             <select className="select select-bordered" value={medical} onChange={(e) => setMedical(e.target.value)}>
                                 <option value={"no"}>No medical training / not wanting to assist</option>
@@ -171,7 +184,7 @@ const EventFormUA = () => {
                         </label>
                         <div>
                             <div className="label">
-                                <span className="label-text">Would you be willing to help with the Food Preparations? Which could include setting out food and simple cooking tasks </span>
+                                <span className="label-text font-bold">Would you be willing to help with the Food Preparations? Which could include setting out food and simple cooking tasks </span>
                             </div>
                             <div className="form-control">
                                 <label className="label cursor-pointer">
@@ -188,7 +201,7 @@ const EventFormUA = () => {
                         </div>
                         <div>
                             <div className="label">
-                                <span className="label-text">Would you be willing to help with clean up? Which could includes cleaning up after meals and around the cabin after the event </span>
+                                <span className="label-text font-bold">Would you be willing to help with clean up? Which could includes cleaning up after meals and around the cabin after the event </span>
                             </div>
                             <div className="form-control">
                                 <label className="label cursor-pointer">
@@ -205,7 +218,7 @@ const EventFormUA = () => {
                         </div>
                         <div>
                             <div className="label">
-                                <span className="label-text">Would you be willing to help shop before the event? Which could involve setting up a time days before the event to go grocery shopping with Sister Collins</span>
+                                <span className="label-text font-bold">Would you be willing to help shop before the event? Which could involve setting up a time days before the event to go grocery shopping with Sister Collins</span>
                             </div>
                             <div className="form-control">
                                 <label className="label cursor-pointer">
@@ -231,5 +244,6 @@ const EventFormUA = () => {
 
 );
 };
+}
 
 export default EventFormUA;

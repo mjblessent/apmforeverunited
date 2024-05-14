@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const EventFormUA = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
+    const [address, setAddress] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [fName, setFName] = useState<string>('');
   const [lName, setLName] = useState<string>('');
@@ -40,6 +41,7 @@ const EventFormUA = () => {
             fName: fName.toLowerCase(),
             lName: lName.toLowerCase(),
             email: email,
+            address: address,
             plusOne: plusOne,
             plusOneName: plusOneName,
             dOneNight: dOneNight,
@@ -80,25 +82,31 @@ const EventFormUA = () => {
                     <div className="card-body">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">First Name</span>
+                                <span className="label-text font-bold">First Name</span>
                             </label>
                             <input type="text" value={fName} onChange={(e) => setFName(e.target.value)} placeholder="First Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Last Name</span>
+                                <span className="label-text font-bold">Last Name</span>
                             </label>
                             <input type="text" value={lName} onChange={(e) => setLName(e.target.value)} placeholder="Last Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text font-bold">Email</span>
                             </label>
                             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" className="input input-bordered" required />
                         </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Address</span>
+                            </label>
+                            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" className="input input-bordered" />
+                        </div>
                         <label className="form-control w-full max-w-xs" >
                             <div className="label">
-                                <span className="label-text">If you are bringing a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
+                                <span className="label-text font-bold">If you are bringing a plus one, please specify if you are married or significant other. Otherwise, select No plus one</span>
                             </div>
                             <select className="select select-bordered" value={plusOne} onChange={(e) => setPlusOne(e.target.value)}>
                                 <option value={"noplusone"}>No Plus one</option>
@@ -108,13 +116,13 @@ const EventFormUA = () => {
                         </label>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Plus One Name</span>
+                                <span className="label-text font-bold">Plus One Name</span>
                             </label>
                             <input type="text" value={plusOneName} onChange={(e) => setPlusOneName(e.target.value)} placeholder="Plus One Name" className="input input-bordered"/>
                         </div>
                         <div className="form-control">
                             <ul>
-                            <span className="label-text">Do you plan on staying the night? Select nights you plan to stay</span>
+                            <span className="label-text font-bold">Do you plan on staying the night? Select nights you plan to stay</span>
                                 <li>
                                     <label className="label cursor-pointer">
                                         <span className="label-text">Thursday July 26th, 2024</span> 
@@ -124,6 +132,7 @@ const EventFormUA = () => {
                             </ul>
                         </div>
                         <div className="overflow-x-auto">
+                        <span className="label-text font-bold">Meals will be provided, please select what meals you plan on attending</span>
                             <table className="table table-zebra">
                                 {/* head */}
                                 <thead>
@@ -154,13 +163,13 @@ const EventFormUA = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Any dietary restrictions?</span>
+                                <span className="label-text font-bold">Any dietary restrictions?</span>
                             </label>
                             <input type="text" value={dietary} onChange={(e) => setDietary(e.target.value)} placeholder="Dietary restrictions" className="input input-bordered"/>
                         </div>
                         <label className="form-control w-full max-w-xs" >
                             <div className="label">
-                                <span className="label-text">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
+                                <span className="label-text font-bold">If you have medical training, would you be willing to provide basic medical assistence during the planning and the event itself, such as with first aid or medical opinion.</span>
                             </div>
                             <select className="select select-bordered" value={medical} onChange={(e) => setMedical(e.target.value)}>
                                 <option value={"no"}>No medical training / not wanting to assist</option>
@@ -169,7 +178,7 @@ const EventFormUA = () => {
                         </label>
                         <div>
                             <div className="label">
-                                <span className="label-text">Would you be willing to help with the Food Preparations? Which could include setting out food and simple cooking tasks </span>
+                                <span className="label-text font-bold">Would you be willing to help with the Food Preparations? Which could include setting out food and simple cooking tasks </span>
                             </div>
                             <div className="form-control">
                                 <label className="label cursor-pointer">
@@ -186,7 +195,7 @@ const EventFormUA = () => {
                         </div>
                         <div>
                             <div className="label">
-                                <span className="label-text">Would you be willing to help with clean up? Which could includes cleaning up after meals and around the cabin after the event </span>
+                                <span className="label-text font-bold">Would you be willing to help with clean up? Which could includes cleaning up after meals and around the cabin after the event </span>
                             </div>
                             <div className="form-control">
                                 <label className="label cursor-pointer">
@@ -203,7 +212,7 @@ const EventFormUA = () => {
                         </div>
                         <div>
                             <div className="label">
-                                <span className="label-text">Would you be willing to help shop before the event? Which could involve setting up a time days before the event to go grocery shopping with Sister Collins</span>
+                                <span className="label-text font-bold">Would you be willing to help shop before the event? Which could involve setting up a time days before the event to go grocery shopping with Sister Collins</span>
                             </div>
                             <div className="form-control">
                                 <label className="label cursor-pointer">

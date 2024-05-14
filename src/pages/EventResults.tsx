@@ -7,6 +7,7 @@ import Dietary from "../components/EventResults/Dietary";
 import Helpers from "../components/EventResults/Helpers";
 import Attendees from "../components/EventResults/Attendees";
 import MarriedCouples from "../components/EventResults/MarriedCouples";
+import Addresses from "../components/EventResults/Addresses";
 
 
 const EventResults = () => {
@@ -54,6 +55,7 @@ const EventResults = () => {
             <Helpers item="medical" title="Medical Training"/>
             <Attendees/>
             <MarriedCouples/>
+            <Addresses/>
         </div>
         <Footer/>
     </div>

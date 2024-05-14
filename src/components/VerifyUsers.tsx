@@ -10,6 +10,7 @@ uid: string,
 
 const VerifyUsers = () => {
     const [firstLoad, setFirstLoad] = useState(true);
+    const [submit, setSubmit] = useState(false);
     const [userList, setUserList] = useState<UserAccounts>([]);
     const [userID, setUserID] = useState<string>('0');
     const [served, setServed] = useState<string>('');
@@ -36,6 +37,7 @@ const VerifyUsers = () => {
     }
 
     const checkIfServed = async (id:string) =>{
+        setSubmit(false);
         setUserID(id);
         if(id == "0"){
             setServed("");
@@ -64,9 +66,51 @@ const VerifyUsers = () => {
         //console.log(userID);
         await updateDoc(doc(db, 'user/' + userID), {verified: true});
         await setDoc(doc(db, 'account/' + userID), {id: userID});
+        setSubmit(true);
+        setFirstLoad(true);
 
     };
 
+
+    if(submit){
+        return(
+            <div>
+                <div role="alert" className="alert alert-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Account Authorized</span>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <div className="hero-content flex-col ">
+                            <h1>Account Authorization</h1>
+                            <div className="card sm:w-[30rem] shadow-2xl bg-base-100">
+                                <div className="card-body">
+                                    <label className="form-control w-full max-w-xs" >
+                                        <div className="label">
+                                            <span className="label-text">Select the User Account you wish to verify</span>
+                                        </div>
+                                        <select className="select select-bordered" value={userID} onChange={(e) => checkIfServed(e.target.value)}>
+                                            <option key={"0"} value={"0"}></option>
+                                            {userList && userList.map(list =>
+                                                <option key={list.uid} value={list.uid}>{list.name}</option>
+                                                )}
+                                            
+                                        </select>
+                                    </label>
+                                    <div className="label">
+                                        <span className="label-text">{served && served}</span>
+                                    </div>
+                                    <div className="form-control mt-6">
+                                        <button className="btn btn-primary">Verify Account</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        );
+    }else{
     return(
         <div>
             <form onSubmit={handleSubmit}>
@@ -100,6 +144,7 @@ const VerifyUsers = () => {
             </form>
         </div>
     );
+}
 };
 
 export default VerifyUsers;

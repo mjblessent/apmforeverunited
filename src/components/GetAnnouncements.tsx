@@ -8,6 +8,7 @@ type AnnouncementDoc ={
     date: string,
     imgurl: string,
     id: string,
+    url: string,
 }[];
 
 const GetAnnouncements = () => {
@@ -25,7 +26,8 @@ const GetAnnouncements = () => {
                 message: doc.data().message,
                 date: doc.data().date,
                 imgurl: doc.data().imgurl,
-                id: doc.id
+                id: doc.id,
+                url: doc.data().url
             }
         });
 
@@ -57,6 +59,7 @@ const GetAnnouncements = () => {
                     <h1 className="text-5xl font-bold">{list.title}</h1>
                     <p className="text-xs">{list.date}</p>
                     <p className="py-6">{list.message}</p>
+                    <a href= {list.url} className="text-blue-400">{list.url}</a>
                 </div>
             </div>
         </div>

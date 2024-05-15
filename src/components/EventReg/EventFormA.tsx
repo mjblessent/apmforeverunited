@@ -131,7 +131,7 @@ const EventFormUA = () => {
                             <span className="label-text font-bold">Do you plan on staying the night? Select nights you plan to stay</span>
                                 <li>
                                     <label className="label cursor-pointer">
-                                        <span className="label-text">Thursday July 26th, 2024</span> 
+                                        <span className="label-text">Friday July 26th, 2024</span> 
                                         <input type="checkbox" checked={dOneNight} onChange={() => setdOneNight(!dOneNight)} className="checkbox checkbox-primary" />
                                     </label>
                                 </li>

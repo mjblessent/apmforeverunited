@@ -14,7 +14,7 @@ const Dietary = () => {
 
     const getDietary = async () => {
 
-        const q = query(collection(db,"submissions"), where("dietary", "!=", ""));
+        const q = query(collection(db,"submissions"), where("dietary", ">", ""), where("dietary", "!=", "None"));
         const querySnapshot = await getDocs(q);
 
         const lists = querySnapshot.docs.map((doc) => {

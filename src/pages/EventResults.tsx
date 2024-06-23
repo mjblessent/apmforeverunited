@@ -8,6 +8,7 @@ import Helpers from "../components/EventResults/Helpers";
 import Attendees from "../components/EventResults/Attendees";
 import MarriedCouples from "../components/EventResults/MarriedCouples";
 import Addresses from "../components/EventResults/Addresses";
+import Shoppers from "../components/EventResults/Shopping";
 
 
 const EventResults = () => {
@@ -49,13 +50,14 @@ const EventResults = () => {
                 </table>
             </div>
             <Dietary/>
-            <Helpers item="shop" title="Shopping"/>
+            <Shoppers item="shop" title="Shopping"/>
             <Helpers item="food" title="Food Prep"/>
             <Helpers item="clean" title="Clean Up"/>
             <Helpers item="medical" title="Medical Training"/>
             <Attendees/>
             <MarriedCouples/>
             <Addresses/>
+            
         </div>
         <Footer/>
     </div>

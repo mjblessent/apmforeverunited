@@ -10,6 +10,7 @@ type Props = {
 
 type HelperDoc = {
     name: string,
+    meal: string,
 }[];
 
 const Helpers = (props: Props) => {
@@ -23,8 +24,26 @@ const Helpers = (props: Props) => {
         const querySnapshot = await getDocs(q);
 
         const lists = querySnapshot.docs.map((doc) => {
+            var meals = "";
+            if(doc.data().dOneD == true)
+                {
+                    meals = meals + "Friday Dinner, ";
+                }
+            if(doc.data().dTwoB == true)
+                {
+                     meals = meals + "Saturday Breakfast, ";
+                }
+            if(doc.data().dTwoL == true)
+                {
+                    meals = meals + "Saturday Lunch, ";
+                }
+            if(doc.data().dTwoD == true)
+                {
+                    meals = meals + "Saturday Dinner, ";
+                }
             return{
-                name: doc.data().fName + " " +doc.data().lName
+                name: doc.data().fName + " " +doc.data().lName,
+                meal: meals
             }
         });
 
@@ -58,12 +77,14 @@ const Helpers = (props: Props) => {
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Meals</th>
                     </tr>
                 </thead>
                 <tbody>
                     {helperList && helperList.map(list => 
                     <tr key={list.name}>
                         <td>{list.name}</td>
+                        <td>{list.meal}</td>
                     </tr>
                     )}
 

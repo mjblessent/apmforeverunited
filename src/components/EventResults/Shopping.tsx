@@ -1,25 +1,29 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
-type DietaryDoc = {
+
+type Props = {
+    item: string;
+    title: string;
+}
+
+type ShopperDoc = {
     name: string,
-    dietary: string,
-    meal: string,
+    email: string,
 }[];
 
-const Dietary = () => {
+const Shoppers = (props: Props) => {
     const [firstLoad, setFirstLoad] = useState(true);
-    const [dietaryList, setDietaryList] = useState<DietaryDoc>([]);
+    const [shopperList, setShopperList] = useState<ShopperDoc>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const getDietary = async () => {
+    const getShoppers = async () => {
 
-        const q = query(collection(db,"submissions"), where("dietary", ">", ""), where("dietary", "!=", "None"));
+        const q = query(collection(db,"submissions"), where(props.item, "==", "yes"));
         const querySnapshot = await getDocs(q);
 
         const lists = querySnapshot.docs.map((doc) => {
-
             var meals = "";
             if(doc.data().dOneD == true)
                 {
@@ -38,64 +42,49 @@ const Dietary = () => {
                     meals = meals + "Saturday Dinner, ";
                 }
             return{
-                name: doc.data().fName + " " +doc.data().lName ,
-                dietary: doc.data().dietary,
-                meal: meals
+                name: doc.data().fName + " " +doc.data().lName,
+                email: doc.data().email
             }
         });
-        //console.log(lists);
-        for(var x =0; x<lists.length;x++)
-            {
-                if(lists[x].dietary == "No" || lists[x].dietary == "None.")
-                    {
-                        //console.log("remove this!");
-                        //console.log(lists[x]);
-                       lists.splice(x,1);
-                       x = x-1;  
-                    }
-            }
-            //console.log(lists);
 
-
-            setDietaryList(lists);
+        setShopperList(lists);
         setFirstLoad(false);
         setIsLoading(false);
     };
 
     if(firstLoad){
-        getDietary();
+        getShoppers();
         
     }
 
     if(isLoading){
         return (
             <div className='text-center mt-10'>
-                <h1 className="text-3xl font-bold text-center">Dietary Restrictions</h1>
+                <h1 className="text-3xl font-bold text-center">{props.title}</h1>
                <progress className="progress w-56"></progress> 
             </div>
         )
     }
 
+
     return(
         <div>
             <div>
-                <h1 className="text-3xl font-bold text-center">Dietary Restrictions</h1>
+                <h1 className="text-3xl font-bold text-center">{props.title}</h1>
             </div>
             <table className="table table-zebra border-4">
                 {/* head */}
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Dietary Restrictions</th>
-                        <th>Meals</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {dietaryList.length > 0 && dietaryList.map(list => 
+                    {shopperList && shopperList.map(list => 
                     <tr key={list.name}>
                         <td>{list.name}</td>
-                        <td>{list.dietary}</td>
-                        <td>{list.meal}</td>
+                        <td>{list.email}</td>
                     </tr>
                     )}
 
@@ -105,4 +94,4 @@ const Dietary = () => {
     );
 };
 
-export default Dietary;
+export default Shoppers;

@@ -9,9 +9,24 @@ import Attendees from "../components/EventResults/Attendees";
 import MarriedCouples from "../components/EventResults/MarriedCouples";
 import Addresses from "../components/EventResults/Addresses";
 import Shoppers from "../components/EventResults/Shopping";
+import { useState } from "react";
+import AssignGender from "../components/EventResults/AssignGender";
+import Singles from "../components/EventResults/Singles";
 
 
 const EventResults = () => {
+    const [submit, setSubmit] = useState(true);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if(submit){
+            setSubmit(false);
+        } else{
+            setSubmit(true);
+        }
+    }
+
+    if(submit){
     return( <div className="max-w-4xl mx-auto ">
         <Navbar />
         <div className=" space-y-10">
@@ -56,12 +71,31 @@ const EventResults = () => {
             <Helpers item="medical" title="Medical Training"/>
             <Attendees/>
             <MarriedCouples/>
-            <Addresses/>
             
+            <Singles/>
+            <form onSubmit={handleSubmit}>
+                <p>If gender is not shown, click the following to assign it</p>
+                <button className="btn btn-primary">Determine Elder or Sister</button>
+            </form>
         </div>
+        <Addresses/>
         <Footer/>
     </div>
     );
+}
+else{
+    return(
+        <div>
+        <Navbar/>
+        <form onSubmit={handleSubmit}>
+                <button className="btn btn-primary">Go Back</button>
+        </form>
+        <AssignGender/>
+        <Footer/>
+        </div>
+        
+    );
+}
 };
 
 export default EventResults;

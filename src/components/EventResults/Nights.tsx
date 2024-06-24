@@ -12,6 +12,8 @@ const Nights = (props: Props) => {
     const [NightsNumSpouse, setNightsNumSpouse] = useState<number>(0);
     const [NightsNumSigOth, setNightsNumSigOth] = useState<number>(0);
     const [NightsNumSingle, setNightsNumSingle] = useState<number>(0);
+    const [NightsNumMale, setNightsNumMale] = useState<number>(0);
+    const [NightsNumFemale, setNightsNumFemale] = useState<number>(0);
     const [firstLoad, setFirstLoad] = useState(true);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -19,14 +21,25 @@ const Nights = (props: Props) => {
         const qSpouse = query(collection(db,"submissions"), where(props.night, "==", true),where("plusOne", "==", "spouse"));
         const qSigOth = query(collection(db,"submissions"), where(props.night, "==", true),where("plusOne", "==", "signifcantother"));
         const qSingle = query(collection(db,"submissions"), where(props.night, "==", true),where("plusOne", "==", "noplusone"));
+        const qMaleA = query(collection(db,"submissions"), where(props.night, "==", true),where("gender", "==", "male"));
+        const qMalePO = query(collection(db,"submissions"), where(props.night, "==", true),where("plusGender", "==", "male"));
+        const qFemaleA = query(collection(db,"submissions"), where(props.night, "==", true),where("gender", "==", "female"));
+        const qFemalePO = query(collection(db,"submissions"), where(props.night, "==", true),where("plusGender", "==", "female"));
 
         const querySnapshotSpouse = await getCountFromServer(qSpouse);
         const querySnapshotSigOth = await getCountFromServer(qSigOth);
         const querySnapshotSingle = await getCountFromServer(qSingle);
+        const querySnapshotMaleA = await getCountFromServer(qMaleA);
+        const querySnapshotMalePO = await getCountFromServer(qMalePO);
+        const querySnapshotFemaleA = await getCountFromServer(qFemaleA);
+        const querySnapshotFemalePO = await getCountFromServer(qFemalePO);
+
 
         setNightsNumSpouse(querySnapshotSpouse.data().count);
         setNightsNumSigOth(querySnapshotSigOth.data().count * 2);
         setNightsNumSingle(querySnapshotSingle.data().count);
+        setNightsNumMale(querySnapshotMaleA.data().count + querySnapshotMalePO.data().count);
+        setNightsNumFemale(querySnapshotFemaleA.data().count + querySnapshotFemalePO.data().count);
         setFirstLoad(false);
         setIsLoading(false);
     };
@@ -60,8 +73,16 @@ const Nights = (props: Props) => {
                 <div className="stat-value">{NightsNumSpouse}</div>
             </div>
             <div className="stat">
-                <div className="stat-title">Single</div>
+                <div className="stat-title">Total Single</div>
                 <div className="stat-value">{NightsNumSigOth+NightsNumSingle}</div>
+            </div>
+            <div className="stat">
+                <div className="stat-title">Male Single</div>
+                <div className="stat-value">{NightsNumMale}</div>
+            </div>
+            <div className="stat">
+                <div className="stat-title">Female Single</div>
+                <div className="stat-value">{NightsNumFemale}</div>
             </div>
         </div>
     </div>

@@ -80,7 +80,9 @@ const EventFormUA = () => {
             food: food,
             clean: clean,
             shop: shop,
-            createdAt: serverTimestamp()
+            createdAt: serverTimestamp(),
+            gender: "",
+            plusGender: ""
         };
 
         const formDirectory = doc(db, 'submissions/' + fileId);

@@ -6,6 +6,7 @@ type MarriedDoc ={
     name: string,
     plusone: string,
     email: string,
+    dOneNight: string,
 }[];
 
 const MarriedCouples = () => {
@@ -19,10 +20,15 @@ const MarriedCouples = () => {
         const querySnapshot = await getDocs(q);
 
         const lists = querySnapshot.docs.map((doc) => {
+            var night = "No";
+            if(doc.data().dOneNight){
+                night= "Yes";
+            }
             return{
                 name: doc.data().fName + " " +doc.data().lName,
                 plusone: doc.data().plusOneName,
-                email: doc.data().email
+                email: doc.data().email,
+                dOneNight: night
             }
         });
 
@@ -56,6 +62,7 @@ const MarriedCouples = () => {
                     <tr>
                         <th>Name</th>
                         <th>Plus One Name</th>
+                        <th>Staying the night?</th>
                         <th>Email</th>
                     </tr>
                 </thead>
@@ -64,6 +71,7 @@ const MarriedCouples = () => {
                     <tr key={list.name}>
                         <td>{list.name}</td>
                         <td>{list.plusone}</td>
+                        <td>{list.dOneNight}</td>
                         <td>{list.email}</td>
                     </tr>
                     )}

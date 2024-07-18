@@ -11,6 +11,7 @@ type Props = {
 type HelperDoc = {
     name: string,
     meal: string,
+    email: string,
 }[];
 
 const Helpers = (props: Props) => {
@@ -43,7 +44,8 @@ const Helpers = (props: Props) => {
                 }
             return{
                 name: doc.data().fName + " " +doc.data().lName,
-                meal: meals
+                meal: meals,
+                email: doc.data().email
             }
         });
 
@@ -78,6 +80,7 @@ const Helpers = (props: Props) => {
                     <tr>
                         <th>Name</th>
                         <th>Meals</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,6 +88,7 @@ const Helpers = (props: Props) => {
                     <tr key={list.name}>
                         <td>{list.name}</td>
                         <td>{list.meal}</td>
+                        <td>{list.email}</td>
                     </tr>
                     )}
 

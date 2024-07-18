@@ -14,6 +14,7 @@ import UploadMissionInfo from "./pages/UploadMissionInfo"
 import SearchMissionInfo from "./pages/SearchMissionInfo"
 import ManageAccounts from "./pages/ManageAccounts"
 import ManageHome from "./pages/ManageHome"
+import MissionHistory from "./pages/MissionHistory"
 
 
 
@@ -61,6 +62,12 @@ function App() {
         <Route path="/profile" element={
         <PrivateRoute>
           <Profile />
+        </PrivateRoute>
+
+        } />
+        <Route path="/missionhistory" element={
+        <PrivateRoute>
+          <MissionHistory />
         </PrivateRoute>
 
         } />

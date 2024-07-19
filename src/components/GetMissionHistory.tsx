@@ -160,7 +160,7 @@ const GetMissionHistory = () => {
                 <h1 className="text-3xl font-bold text-center">Mission History!</h1>
                <progress className="progress w-56"></progress> 
             </div>
-        )
+        );
     }
 
     return(

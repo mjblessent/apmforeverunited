@@ -5,6 +5,7 @@ import HomeLink from "./HomeLink";
 import ImgCollectLink from "./ImgCollectLink";
 import ManageAccLink from "./ManageAccLink";
 import ManageHomeLink from "./ManageHomeLink";
+import MissionHistoryLink from "./MissionHistoryLink";
 import ProfileLink from "./ProfileLink";
 
 const Menu = () => {
@@ -19,6 +20,7 @@ const Menu = () => {
                     <HomeLink />
                     <EventRegLink />
                     <EventResultLink />
+                    <MissionHistoryLink />
                     <ImgCollectLink />
                     <ManageAccLink />
                     <ManageHomeLink />
@@ -32,6 +34,7 @@ const Menu = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <HomeLink />
                     <EventRegLink />
+                    <MissionHistoryLink />
                     <ProfileLink />
                     </ul>
                 </div>

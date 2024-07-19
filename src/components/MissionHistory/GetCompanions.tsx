@@ -1,5 +1,5 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { db } from "../../firebase/config";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -13,9 +13,10 @@ type Companions = {
 const GetCompanions = () => {
     const { user } = useAuth();
     const [companionList, setCompanionList] = useState<Companions>([]);
-    let firstLoad = useRef(true);
+    const [firstLoad, setFirstLoad] = useState(true);
 
 const getCompanions = async () => {
+    console.log("Calling get companions");
     const qCompanions = query(collection(db,'user/'+user?.uid+'/companions'), where("name", "!=",""));
     const querySnapshotC = getDocs(qCompanions);
     const lists = (await querySnapshotC).docs.map((document) => {
@@ -30,7 +31,7 @@ const getCompanions = async () => {
 
 if(firstLoad){
     getCompanions();
-    firstLoad.current=false;
+    setFirstLoad(false);
 }
 
 return(

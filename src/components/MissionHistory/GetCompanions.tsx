@@ -7,6 +7,8 @@ type Companions = {
     name: string,
     area: string,
     zone: string,
+    startDate: string,
+    endDate: string,
     
     }[];
 
@@ -17,13 +19,21 @@ const GetCompanions = () => {
 
 const getCompanions = async () => {
     console.log("Calling get companions");
+    let firstDate = new Date("7/15/18");
+    let seondDate = new Date("7/14/19");
+    console.log(firstDate);
+    console.log(seondDate);
+    console.log(firstDate < seondDate);
+
     const qCompanions = query(collection(db,'user/'+user?.uid+'/companions'), where("name", "!=",""));
     const querySnapshotC = getDocs(qCompanions);
     const lists = (await querySnapshotC).docs.map((document) => {
         return{
             name: document.data().name,
             zone: document.data().zone,
-            area: document.data().area
+            area: document.data().area,
+            startDate: document.data().startDate,
+            endDate: document.data().endDate
         }
     });
     setCompanionList(lists);
@@ -43,6 +53,7 @@ return(
                         <th>Name</th>
                         <th>Area</th>
                         <th>Zone</th>
+                        <th>Dates Served</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +62,7 @@ return(
                             <td>{list.name}</td>
                             <td>{list.area}</td>
                             <td>{list.zone}</td>
+                            <td>{list.startDate} - {list.endDate}</td>
                         </tr>
                     )}
                 </tbody>

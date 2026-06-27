@@ -15,7 +15,7 @@ const GetMissionInfo = () => {
             const qSnapshot = await getCountFromServer(q);
             console.log(qSnapshot.data().count);
             console.log(qSnapshot.data().count > 0);//greater than 0 means it was found
-        } catch(error){
+        } catch{
           //setError(error.message);
           setError("error on submit");
         }

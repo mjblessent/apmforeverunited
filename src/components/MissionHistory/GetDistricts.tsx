@@ -15,7 +15,7 @@ const [firstLoad, setFirstLoad] = useState(true);
 const getDistricts = async () => {
     const qDistriscts = query(collection(db,'user/'+user?.uid+'/district'), where("district","!=",""));
     const querySnapshotD = getDocs(qDistriscts);
-    var missionaryList = [{district:"",zone:"",missionaries:[""]}];
+    const missionaryList = [{district:"",zone:"",missionaries:[""]}];
     const lists = (await querySnapshotD).docs.map((document) =>{
         return{
             id: document.id,
@@ -24,11 +24,11 @@ const getDistricts = async () => {
         }
     });
 
-    for(var x = 0; x<lists.length;x++){
+    for(let x = 0; x<lists.length;x++){
         if(lists[x].id != ""){
             const qMissionaries = query(collection(db,'user/'+user?.uid+'/district/'+lists[x].id+'/missionaries'), where("id","==",lists[x].id));
             const querySnapshotM = await getDocs(qMissionaries);
-            var names = [""];
+            const names = [""];
             (querySnapshotM).docs.map((document) =>{
                 
                names.push(document.data().fName + " " + document.data().lName + ", ");

@@ -30,7 +30,7 @@ const GetProfile = () => {
                 setLName(docSnap.data().lName);
 
              }
-        } catch(error)
+        } catch
         {
             setIsError(true);
         }
@@ -66,7 +66,7 @@ const GetProfile = () => {
 
     }
 
-    }catch(error){
+    }catch{
         setIsError(true);
     }
 

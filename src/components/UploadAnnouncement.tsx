@@ -24,8 +24,8 @@ const UploadAnnouncement = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        var downloadURL;
-        var announcementData;
+        let downloadURL;
+        let announcementData;
         if(selectedFile){
         const fileId = uuidv4();
         const formatFile = selectedFile.type.split('/')[1];
@@ -61,7 +61,7 @@ const UploadAnnouncement = () => {
         
         try{
             await addDoc(collection(db, "announcements"), announcementData);
-        } catch(error) {
+        } catch {
             setError("error");
         }
 

@@ -15,7 +15,7 @@ const Signin = () => {
     try{
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
-    } catch(error){
+    } catch{
       //setError(error.message);
       setError("error on submit");
     }

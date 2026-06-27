@@ -10,6 +10,7 @@ interface AuthContextType {
     admin: boolean
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextType>({
     user: null,
     isLoading: false,
@@ -25,33 +26,33 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [admin, setAdmin] = useState<boolean>(true);
 
-    useEffect(()  => {
+    useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
             setIsLoading(false);
             setAdmin(admin);
-            if(user){
+            if (user) {
                 const getAdmin = async () => {
-                    try{
+                    try {
                         const DBuserDirectory = 'user/' + user.uid;
                         const userRecord = doc(db, DBuserDirectory);
                         const docSnap = await getDoc(userRecord);
                         if (docSnap.exists()) {
                             //console.log(docSnap.data().admin + ":Docsnap");
                             //console.log(docSnap.data().admin == true + ":Docsnap condition");
-                            if(docSnap.data().admin == true){
+                            if (docSnap.data().admin == true) {
                                 setAdmin(true);
                                 //console.log("admin!");
                             }
-                            else{
+                            else {
                                 setAdmin(false);
-                               // console.log("Not Admin");
+                                // console.log("Not Admin");
                             }
                         }
-                        else{
+                        else {
                             setAdmin(false);
                         }
-                    }catch(error){
+                    } catch {
                         //console.error(error);
                         setAdmin(false);
                     }
@@ -59,7 +60,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
                 await getAdmin();
             }
-            else{
+            else {
                 setAdmin(false);
             }
         });
@@ -72,5 +73,5 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         admin,
     };
 
-    return <AuthContext.Provider value={value}> {!isLoading && children } </AuthContext.Provider>;
+    return <AuthContext.Provider value={value}> {!isLoading && children} </AuthContext.Provider>;
 };

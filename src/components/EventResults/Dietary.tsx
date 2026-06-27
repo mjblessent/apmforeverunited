@@ -20,7 +20,7 @@ const Dietary = () => {
 
         const lists = querySnapshot.docs.map((doc) => {
 
-            var meals = "";
+            let meals = "";
             if(doc.data().dOneD == true)
                 {
                     meals = meals + "Friday Dinner, ";
@@ -44,7 +44,7 @@ const Dietary = () => {
             }
         });
         //console.log(lists);
-        for(var x =0; x<lists.length;x++)
+        for(let x =0; x<lists.length;x++)
             {
                 if(lists[x].dietary == "No" || lists[x].dietary == "None.")
                     {

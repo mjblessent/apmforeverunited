@@ -68,7 +68,7 @@ const EventFormUA = () => {
         const formDirectory = doc(db, 'submissions/' + fileId);
         await setDoc(formDirectory,formData);
         navigate('/');
-    } catch(error){
+    } catch{
       //setError(error.message);
       setError("error on submit");
     }

@@ -41,7 +41,7 @@ const Signup = () => {
       await setDoc(userDirectory,userData);
       }
       navigate('/');
-    } catch(error){
+    } catch{
       setError("error.message")
     }
     

@@ -8,7 +8,7 @@ const LogoutBtn = () => {
         try{
             await signOut(auth);
             signOutPage();
-        } catch (error){
+        } catch {
             //console.log(error.message);
         }
     };

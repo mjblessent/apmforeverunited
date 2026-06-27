@@ -25,7 +25,7 @@ const Helpers = (props: Props) => {
         const querySnapshot = await getDocs(q);
 
         const lists = querySnapshot.docs.map((doc) => {
-            var meals = "";
+            let meals = "";
             if(doc.data().dOneD == true)
                 {
                     meals = meals + "Friday Dinner, ";

@@ -39,7 +39,7 @@ const UploadTextDoc = () => {
             {
                 const items = fileLines[x].split("\t");
 
-                var mOneName:string[];
+                let mOneName:string[];
                 if(items[10]  == "0" || items[10].length == 2){
                     mOneName = ["0,","0","0"];
                     
@@ -58,7 +58,7 @@ const UploadTextDoc = () => {
                     }
                 }
 
-                var mTwoName:string[];
+                let mTwoName:string[];
                 if(items[11]  == "0" || items[11].length == 2){
                     mTwoName = ["0,","0","0"];
                     
@@ -77,7 +77,7 @@ const UploadTextDoc = () => {
                     }
                 }
 
-                var mThreeName:string[];
+                let mThreeName:string[];
                 if(items[12]  == "0" || items[12].length == 2){
                     mThreeName = ["0,","0","0"];
                     
@@ -96,7 +96,7 @@ const UploadTextDoc = () => {
                     }
                 }
 
-                var mFourName:string[];
+                let mFourName:string[];
                 if(items[13]  == "0" || items[13].length == 2){
                     mFourName = ["0,","0","0"];
                     
@@ -168,7 +168,7 @@ const UploadTextDoc = () => {
                 
                 try{
                     await addDoc(collection(db,"missiondatanames"), itemData);
-                }catch(error){
+                }catch{
                     const fileId = uuidv4();
                     await setDoc(doc(db, 'missiondatanames/' + fileId), itemData);
                 }

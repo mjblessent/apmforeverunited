@@ -22,7 +22,7 @@ const Singles = () => {
         const querySnapshot = await getDocs(q);
         const lists = querySnapshot.docs.map( (document) => {
 
-            var night = "No";
+            let night = "No";
             if(document.data().dOneNight){
                 night= "Yes";
             }

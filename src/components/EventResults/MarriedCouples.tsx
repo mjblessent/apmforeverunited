@@ -20,7 +20,7 @@ const MarriedCouples = () => {
         const querySnapshot = await getDocs(q);
 
         const lists = querySnapshot.docs.map((doc) => {
-            var night = "No";
+            let night = "No";
             if(doc.data().dOneNight){
                 night= "Yes";
             }

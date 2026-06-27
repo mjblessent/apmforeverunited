@@ -1,7 +1,7 @@
 import { addDoc, and, collection, doc, getDoc, getDocs, or, query, setDoc, where } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { useAuth } from "../hooks/useAuth";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GetCompanions from "./MissionHistory/GetCompanions";
 import GetDistricts from "./MissionHistory/GetDistricts";
 
@@ -11,7 +11,7 @@ const GetMissionHistory = () => {
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //const [firstLoad, setFirstLoad] = useState(true);
-    let firstLoad = useRef(true);
+    const firstLoad = useRef(true);
     
 
 
@@ -53,17 +53,17 @@ const GetMissionHistory = () => {
                 const companions = [{name:"", area:"",zone:"",startDate:"",endDate:""}];
                 const districts = [{district:"", area:"", zone:""}];
                 const districtDates = [{district:"",date:""}];
-                var shouldAdd = true;
-                var shouldAddDistrict = true;
-                var shouldAddDistrictDate = true;
+                let shouldAdd = true;
+                let shouldAddDistrict = true;
+                let shouldAddDistrictDate = true;
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.data());
 
-                    for(var y =0; y<districts.length;y++){
+                    for(let y =0; y<districts.length;y++){
                         if(districts[y].district == doc.data().district){
-                            for(var z = 0; z<districtDates.length;z++){//problem here, length gets into the thousands
+                            for(let z = 0; z<districtDates.length;z++){//problem here, length gets into the thousands
                                 console.log(districtDates.length);
                                 if(districtDates[z].district == doc.data().district && districtDates[z].date == doc.data().date){
                                     shouldAddDistrictDate = false;
@@ -89,7 +89,7 @@ const GetMissionHistory = () => {
                 if(doc.data().missionaryonefirst != docSnap.data().fName && doc.data().missionaryonelast != docSnap.data().lName && doc.data().missionaryonefirst != "0")
                     {
                         console.log(doc.data().missionaryonefirst +" "+ doc.data().missionaryonelast);
-                        for(var x =0; x<companions.length; x++){
+                        for(let x =0; x<companions.length; x++){
                             if(companions[x].name == doc.data().missionaryonefirst +" "+ doc.data().missionaryonelast){
                                 //check if new date is less than start date and if so update
                                 //check if new data is greater than end date if so then update
@@ -115,7 +115,7 @@ const GetMissionHistory = () => {
                 if(doc.data().missionarytwofirst != docSnap.data().fName && doc.data().missionarytwolast != docSnap.data().lName && doc.data().missionarytwofirst != "0")
                     {
                         console.log(doc.data().missionarytwofirst +" "+ doc.data().missionarytwolast);
-                        for(var x =0; x<companions.length; x++){
+                        for(let x =0; x<companions.length; x++){
                             if(companions[x].name == doc.data().missionarytwofirst +" "+ doc.data().missionarytwolast){
                                 if(compareDates(companions[x].startDate, doc.data().date))
                                     {
@@ -138,7 +138,7 @@ const GetMissionHistory = () => {
                 if(doc.data().missionarythreefirst != docSnap.data().fName && doc.data().missionarythreelast != docSnap.data().lName && doc.data().missionarythreefirst != "0")
                     {
                         console.log(doc.data().missionarythreefirst +" "+ doc.data().missionarythreelast);
-                        for(var x =0; x<companions.length; x++){
+                        for(let x =0; x<companions.length; x++){
                             if(companions[x].name == doc.data().missionarythreefirst +" "+ doc.data().missionarythreelast){
                                 if(compareDates(companions[x].startDate, doc.data().date))
                                     {
@@ -161,7 +161,7 @@ const GetMissionHistory = () => {
                     if(doc.data().missionaryfourfirst != docSnap.data().fName && doc.data().missionaryfourlast != docSnap.data().lName && doc.data().missionaryfourfirst != "0")
                         {
                             console.log(doc.data().missionaryfourfirst +" "+ doc.data().missionaryfourlast);
-                            for(var x =0; x<companions.length; x++){
+                            for(let x =0; x<companions.length; x++){
                                 if(companions[x].name == doc.data().missionaryfourfirst +" "+ doc.data().missionaryfourlast){
                                     if(compareDates(companions[x].startDate, doc.data().date))
                                         {
@@ -184,19 +184,19 @@ const GetMissionHistory = () => {
                         
                 });
             
-                for(var y =0; y<companions.length;y++){
+                for(let y =0; y<companions.length;y++){
                     console.log(companions[y].name + "\n");
                     console.log(companions[y].area + "\n");
                     await addDoc(collection(db,'user/'+user?.uid+'/companions'),companions[y]);
                 }
                 const districtMissionaries = [{id:"",date:"",district:"",fName:"",lName:""}];
-                var shouldAddDistrictMissionary = true;
-                for(var y =0; y<districts.length;y++){
+                let shouldAddDistrictMissionary = true;
+                for(let y =0; y<districts.length;y++){
                     
                     const docRef = await addDoc(collection(db,'user/'+user?.uid+'/district'),districts[y]);
                     console.log(docRef);
                     console.log(docRef.id);
-                    for(var x = 0; x<districtDates.length;x++)
+                    for(let x = 0; x<districtDates.length;x++)
                     {
                         //console.log("District " +districts[y].district + "\n");
                         //console.log("District Date "+districtDates[x].district + "\n");
@@ -210,7 +210,7 @@ const GetMissionHistory = () => {
                                 console.log(docs.data());
                                 if(docs.data().missionaryonefirst != docSnap.data().fName && docs.data().missionaryonelast != docSnap.data().lName && docs.data().missionaryonefirst != "0")
                                 {
-                                    for(var z = 0; z<districtMissionaries.length;z++)
+                                    for(let z = 0; z<districtMissionaries.length;z++)
                                         {
                                             if(districtMissionaries[z].fName == docs.data().missionaryonefirst&& districtMissionaries[z].lName == docs.data().missionaryonelast)
                                             {
@@ -227,7 +227,7 @@ const GetMissionHistory = () => {
                                 }
                                 if(docs.data().missionarytwofirst != docSnap.data().fName && docs.data().missionarytwolast != docSnap.data().lName && docs.data().missionarytwofirst != "0")
                                     {
-                                        for(var z = 0; z<districtMissionaries.length;z++)
+                                        for(let z = 0; z<districtMissionaries.length;z++)
                                             {
                                                 if( districtMissionaries[z].fName == docs.data().missionarytwofirst&& districtMissionaries[z].lName == docs.data().missionarytwolast)
                                                 {
@@ -244,7 +244,7 @@ const GetMissionHistory = () => {
                                     }
                                 if(docs.data().missionarythreefirst != docSnap.data().fName && docs.data().missionarythreelast != docSnap.data().lName && docs.data().missionarythreefirst != "0")
                                     {
-                                        for(var z = 0; z<districtMissionaries.length;z++)
+                                        for(let z = 0; z<districtMissionaries.length;z++)
                                             {
                                                 if(districtMissionaries[z].fName == docs.data().missionarythreefirst&& districtMissionaries[z].lName == docs.data().missionarythreelast)
                                                 {
@@ -261,7 +261,7 @@ const GetMissionHistory = () => {
                                     }
                                 if(docs.data().missionaryfourfirst != docSnap.data().fName && docs.data().missionaryfourlast != docSnap.data().lName && docs.data().missionaryfourfirst != "0")
                                     {
-                                        for(var z = 0; z<districtMissionaries.length;z++)
+                                        for(let z = 0; z<districtMissionaries.length;z++)
                                             {
                                                 if(districtMissionaries[z].fName == docs.data().missionaryfourfirst&& districtMissionaries[z].lName == docs.data().missionaryfourlast)
                                                 {
@@ -282,7 +282,7 @@ const GetMissionHistory = () => {
 
                 }
 
-                for(var a = 0;a<districtMissionaries.length;a++){
+                for(let a = 0;a<districtMissionaries.length;a++){
                     console.log(districtMissionaries[a]);
                     if(districtMissionaries[a].id != ""){
                         await addDoc(collection(db,'user/'+user?.uid+'/district/'+districtMissionaries[a].id+'/missionaries'),districtMissionaries[a]);
@@ -308,17 +308,18 @@ const GetMissionHistory = () => {
     }
     };
 
-    if(firstLoad.current == true){
-        console.log("Firstload at the start is ");
-        console.log(firstLoad);
-        //setFirstLoad(false);
-        checkMissionHistory();
-        firstLoad.current = false;
-        console.log("Firstload at the end is ");
-        console.log(firstLoad);
-        
-        
-    }
+    useEffect(() => {
+        if(firstLoad.current == true){
+            console.log("Firstload at the start is ");
+            console.log(firstLoad);
+            //setFirstLoad(false);
+            checkMissionHistory();
+            firstLoad.current = false;
+            console.log("Firstload at the end is ");
+            console.log(firstLoad);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
     const compareDates = (input1:string, input2:string) => {
         const date1 = new Date(input1);

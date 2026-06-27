@@ -19,8 +19,8 @@ const GetCompanions = () => {
 
 const getCompanions = async () => {
     console.log("Calling get companions");
-    let firstDate = new Date("7/15/18");
-    let seondDate = new Date("7/14/19");
+    const firstDate = new Date("7/15/18");
+    const seondDate = new Date("7/14/19");
     console.log(firstDate);
     console.log(seondDate);
     console.log(firstDate < seondDate);

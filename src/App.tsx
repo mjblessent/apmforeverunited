@@ -1,20 +1,22 @@
+import { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import Signup from "./pages/Signup"
 import { AuthProvider } from "./context/auth"
 import PublicRoute from "./routes/PublicRoutes"
 import PrivateRoute from "./routes/PrivateRoutes"
-import Signin from "./pages/Signin"
-import ImageCollection from "./pages/ImageCollection"
 import AdminRoute from "./routes/AdminRoutes"
-import Profile from "./pages/Profile"
-import EventRegister from "./pages/EventRegister"
-import EventResults from "./pages/EventResults"
-import UploadMissionInfo from "./pages/UploadMissionInfo"
-import SearchMissionInfo from "./pages/SearchMissionInfo"
-import ManageAccounts from "./pages/ManageAccounts"
-import ManageHome from "./pages/ManageHome"
-import MissionHistory from "./pages/MissionHistory"
+
+const Home = lazy(() => import("./pages/Home"))
+const Signup = lazy(() => import("./pages/Signup"))
+const Signin = lazy(() => import("./pages/Signin"))
+const ImageCollection = lazy(() => import("./pages/ImageCollection"))
+const Profile = lazy(() => import("./pages/Profile"))
+const EventRegister = lazy(() => import("./pages/EventRegister"))
+const EventResults = lazy(() => import("./pages/EventResults"))
+const UploadMissionInfo = lazy(() => import("./pages/UploadMissionInfo"))
+const SearchMissionInfo = lazy(() => import("./pages/SearchMissionInfo"))
+const ManageAccounts = lazy(() => import("./pages/ManageAccounts"))
+const ManageHome = lazy(() => import("./pages/ManageHome"))
+const MissionHistory = lazy(() => import("./pages/MissionHistory"))
 
 
 
@@ -22,6 +24,7 @@ function App() {
 
   return (
       <AuthProvider>
+      <Suspense fallback={<div className="flex h-screen items-center justify-center"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
       <Routes>
         <Route path="/imagecollection" element={
         <AdminRoute>
@@ -80,6 +83,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/eventregister" element={<EventRegister />} />
       </Routes>
+      </Suspense>
       </AuthProvider>
   );
 }

@@ -18,12 +18,12 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try{
+    try {
       await createUserWithEmailAndPassword(auth, email, password);
-      const user  = auth.currentUser
+      const user = auth.currentUser
       console.log(user);
       console.log(bDay);
-      if(user) {
+      if (user) {
         console.log("New user!");
         const userData = {
           name: fName + " " + lName,
@@ -36,33 +36,33 @@ const Signup = () => {
           admin: false,
           verified: false,
           createdAt: serverTimestamp()
-      };
-      const userDirectory = doc(db, 'user/' + user.uid);
-      await setDoc(userDirectory,userData);
+        };
+        const userDirectory = doc(db, 'user/' + user.uid);
+        await setDoc(userDirectory, userData);
       }
       navigate('/');
-    } catch{
+    } catch {
       setError("error.message")
     }
-    
+
 
   };
 
-  const handleLink = async () =>{
+  const handleLink = async () => {
     //console.log("Linked clicked!");
     navigate('/signin');
-   
+
   };
 
-  const handleHomeLink = async () =>{
+  const handleHomeLink = async () => {
     //console.log("Linked clicked!");
     navigate('/');
-   
+
   };
 
 
 
-    return( 
+  return (
     <form onSubmit={handleSubmit}>
       {error && error}
       <div className="hero min-h-screen bg-base-200">
@@ -70,10 +70,10 @@ const Signup = () => {
           <div className="text-center ">
             <h1 className="text-5xl font-bold">APM Forever United</h1>
             <p className="py-6 px-20">Sign up to gain access to excusive features to your personalized one-stop-shop for all your post mission needs such as quick event registration, view your own personal mission history and more!
-            Accounts are only for those who served in the Arizona Phoenix Mission for the Church of Jesus Christ of Latter-day Saints from July 2017 to July 2020. 
+              Accounts are only for those who served in the Arizona Phoenix Mission for the Church of Jesus Christ of Latter-day Saints from July 2017 to July 2020.
             </p>
           </div>
-          <div className="card sm:w-[30rem] shadow-2xl bg-base-100">
+          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -98,7 +98,7 @@ const Signup = () => {
                 <label className="label">
                   <span className="label-text">Birthday</span>
                 </label>
-                <input type="date" value={bDay} onChange={(e) => setBDay(e.target.value)} className="input input-bordered" required/>
+                <input type="date" value={bDay} onChange={(e) => setBDay(e.target.value)} className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <label className="label">
@@ -114,8 +114,8 @@ const Signup = () => {
               </div>
               <div className="form-control mt-6">
                 <p className="text-center ">Upon signing up accounts will need to be verified by a System administrator before gaining full access.
-                  By signing up, you consent to the storage and use of any and all information stored and linked to your account including and not limited to full name, phone number, birthday and any other information you wish to share. This information will be kept private and will only 
-                  be accessible to you and system admins so that they be able to contact you. This is site is not endorsed by the Church of Jesus Christ of Latter-day Saints.</p>
+                  By signing up, you consent to the storage and use of any and all information stored and linked to your account including and not limited to full name, phone number, birthday and any other information you wish to share. This information will be kept private and will only
+                  be accessible to you and system admins so that they be able to contact you. This is site is not endorsed by, supported by or officially affiliated with the Church of Jesus Christ of Latter-day Saints.</p>
                 <button className="btn btn-primary">Signup</button>
               </div>
               <a className="link link-primary" onClick={handleLink}>Already have an Account? Sign In</a>
@@ -125,7 +125,7 @@ const Signup = () => {
         </div>
       </div>
     </form>
-    );
+  );
 };
 
 export default Signup;

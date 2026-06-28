@@ -1,7 +1,6 @@
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FC, createContext, useEffect, useState } from "react";
-import { auth, db } from "../firebase/config";
-import { doc, getDoc } from "firebase/firestore";
+import { auth } from "../firebase/config";
 
 //create context
 interface AuthContextType {
@@ -31,29 +30,25 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
             setUser(user);
             
             if (user) {
-                const getAdmin = async () => {
-                    try {
-                        const DBuserDirectory = 'user/' + user.uid;
-                        const userRecord = doc(db, DBuserDirectory);
-                        const docSnap = await getDoc(userRecord);
-                        if (docSnap.exists() && docSnap.data().admin === true) {
-                            setAdmin(true);
-                        }
-                        else {
-                            setAdmin(false);
-                        }
-                    } catch {
+                try {
+                    // Fetch the token result which contains the custom claims
+                    // Passing true forces a refresh so we get the latest claims
+                    const idTokenResult = await user.getIdTokenResult(true);
+                    
+                    if (idTokenResult.claims.admin === true) {
+                        setAdmin(true);
+                    } else {
                         setAdmin(false);
-                    } finally {
-                        setIsLoading(false); // BUG FIX: End loading only after admin status is resolved
                     }
+                } catch {
+                    setAdmin(false);
+                } finally {
+                    setIsLoading(false);
                 }
-
-                await getAdmin();
             }
             else {
                 setAdmin(false);
-                setIsLoading(false); // BUG FIX: End loading if no user is present
+                setIsLoading(false);
             }
         });
         return unsubscribe;

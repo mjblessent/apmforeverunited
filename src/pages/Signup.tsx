@@ -33,7 +33,6 @@ const Signup = () => {
           bDay: bDay,
           email: email,
           id: user.uid,
-          admin: false,
           verified: false,
           createdAt: serverTimestamp()
         };

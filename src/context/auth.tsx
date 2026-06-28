@@ -24,37 +24,28 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
     const [user, setUser] = useState<User | null>(null); //sets the default user value
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [admin, setAdmin] = useState<boolean>(true);
+    const [admin, setAdmin] = useState<boolean>(false); // SECURITY FIX: Default to false
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
-            setIsLoading(false);
-            setAdmin(admin);
+            
             if (user) {
                 const getAdmin = async () => {
                     try {
                         const DBuserDirectory = 'user/' + user.uid;
                         const userRecord = doc(db, DBuserDirectory);
                         const docSnap = await getDoc(userRecord);
-                        if (docSnap.exists()) {
-                            //console.log(docSnap.data().admin + ":Docsnap");
-                            //console.log(docSnap.data().admin == true + ":Docsnap condition");
-                            if (docSnap.data().admin == true) {
-                                setAdmin(true);
-                                //console.log("admin!");
-                            }
-                            else {
-                                setAdmin(false);
-                                // console.log("Not Admin");
-                            }
+                        if (docSnap.exists() && docSnap.data().admin === true) {
+                            setAdmin(true);
                         }
                         else {
                             setAdmin(false);
                         }
                     } catch {
-                        //console.error(error);
                         setAdmin(false);
+                    } finally {
+                        setIsLoading(false); // BUG FIX: End loading only after admin status is resolved
                     }
                 }
 
@@ -62,6 +53,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
             }
             else {
                 setAdmin(false);
+                setIsLoading(false); // BUG FIX: End loading if no user is present
             }
         });
         return unsubscribe;

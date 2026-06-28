@@ -7,8 +7,7 @@ interface AdminRouteProps{
 }
 
 const AdminRoute: FC<AdminRouteProps> = ({ children }) => {
-    const { user } = useAuth();
-    const { admin } = useAuth();
+    const { user, admin } = useAuth();
 
     if(!user){
         console.log(admin);

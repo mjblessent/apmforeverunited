@@ -12,42 +12,42 @@ const Menu = () => {
     const { user } = useAuth();
     const { admin } = useAuth();
 
-    if(user){//rm
-        if(admin){//admin
-            return(
+    if (user) {//rm
+        if (admin) {//admin
+            return (
                 <div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <HomeLink />
-                    <EventRegLink />
-                    <EventResultLink />
-                    <MissionHistoryLink />
-                    <ImgCollectLink />
-                    <ManageAccLink />
-                    <ManageHomeLink />
-                    <ProfileLink />
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52">
+                        <HomeLink />
+                        <EventRegLink />
+                        <EventResultLink />
+                        <MissionHistoryLink />
+                        <ImgCollectLink />
+                        <ManageAccLink />
+                        <ManageHomeLink />
+                        <ProfileLink />
                     </ul>
                 </div>
             );
-        }else{
-            return(
+        } else {
+            return (
                 <div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <HomeLink />
-                    <EventRegLink />
-                    <MissionHistoryLink />
-                    <ProfileLink />
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52">
+                        <HomeLink />
+                        <EventRegLink />
+                        <MissionHistoryLink />
+                        <ProfileLink />
                     </ul>
                 </div>
             );
         };
-    }else {//unauthenticated user
-        return(
+    } else {//unauthenticated user
+        return (
             <div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52">
                     <HomeLink />
                     <EventRegLink />
-                    </ul>
-                </div>
+                </ul>
+            </div>
         );
     };
 };
